@@ -14,6 +14,7 @@ from dash import dcc, html
 import numpy as np
 from pandas_datareader import data as web
 from pandas_datareader import get_nasdaq_symbols
+from dateutil.relativedelta import relativedelta
 from datetime import datetime as dt
 
 # create app
@@ -25,8 +26,8 @@ server = app.server
 nasdaqlist = get_nasdaq_symbols()
 
 # default date options
-begin_stock_range = dt(2012, 1, 1)
 end_stock_range = dt.now()
+begin_stock_range = end_stock_range - relativedelta(years=5)
 
 app.layout = html.Div([
     html.Div([
@@ -44,15 +45,15 @@ app.layout = html.Div([
         dcc.Graph(id='stock-graph'),
         html.P('')
 
-    ],style={'width': '40%', 'display': 'inline-block'}),
-    html.Div([
-        html.H2('Critical Variables and Ratios'),
-        html.Table(id='metrics-table'),
-        html.P(''),
-        html.H2('Warning Flags'),
-        html.Table(id='reason-list'),
-        html.P('')
-    ], style={'width': '55%', 'float': 'right', 'display': 'inline-block'}),
+    ],style={'width': '50%', 'display': 'inline-block'}),
+    # html.Div([
+    #     html.H2('Critical Variables and Ratios'),
+    #     html.Table(id='metrics-table'),
+    #     html.P(''),
+    #     html.H2('Warning Flags'),
+    #     html.Table(id='reason-list'),
+    #     html.P('')
+    # ], style={'width': '55%', 'float': 'right', 'display': 'inline-block'}),
     html.H4('Date Range for Stock Chart'),
     dcc.DatePickerRange(
         id='stock-date-range-picker',
