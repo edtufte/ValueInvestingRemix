@@ -1,6 +1,6 @@
 beautifulsoup4==4.11.1
 bs4==0.0.1
-dash==2.5.1
+dash==2.6.1
 dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-table==5.0.0
@@ -10,5 +10,5 @@ Flask-Compress==1.12
 lxml==4.9.0
 numpy==1.22.4
 numpy-financial==1.0.0
-pandas==1.4.2
+pandas==1.4.3
 pandas-datareader==0.10.0
