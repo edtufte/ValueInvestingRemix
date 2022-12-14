@@ -7,7 +7,7 @@ dash-table==5.0.0
 distro==1.7.0
 Flask==2.2.2
 Flask-Compress==1.13
-lxml==4.9.1
+lxml==4.9.2
 numpy==1.23.3
 numpy-financial==1.0.0
 pandas==1.5.0
