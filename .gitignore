@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Secret file and mac system files
+secret_keys.py
+.DS_Store

@@ -12,10 +12,11 @@ import dash
 from dash.dependencies import Input, Output
 from dash import dcc, html
 import numpy as np
-from pandas_datareader import data as web
 from pandas_datareader import get_nasdaq_symbols
+from alpha_vantage.timeseries import TimeSeries
 from dateutil.relativedelta import relativedelta
 from datetime import datetime as dt
+import secret_keys
 
 # create app
 app = dash.Dash(__name__)
@@ -74,15 +75,26 @@ app.layout = html.Div([
     prevent_initial_call=True
 )
 def update_stock_graph(selected_dropdown_value, start_date, end_date):
-    global stockpricedf
-    stockpricedf = web.DataReader(
-        selected_dropdown_value.strip(), data_source='yahoo',
-        start=start_date, end=end_date
+    print("Selected ticker:", selected_dropdown_value)
+    print("Start date:", start_date)
+    print("End date:", end_date)
+
+    # Initialize Alpha Vantage TimeSeries object with your API key in secret_keys.py file
+    ts = TimeSeries(key=secret_keys.api_key, output_format='pandas')
+
+    # Retrieve adjusted stock price data
+    stockpricedf, _ = ts.get_daily_adjusted(
+        symbol=selected_dropdown_value.strip(),
+        outputsize='full'
     )
+
+    # Filter the stock price data within the specified date range
+    stockpricedf = stockpricedf.loc[start_date:end_date]
+
     return {
         'data': [{
             'x': stockpricedf.index,
-            'y': stockpricedf.Close
+            'y': stockpricedf['5. adjusted close']
         }]
     }
 
