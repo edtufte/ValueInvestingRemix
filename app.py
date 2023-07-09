@@ -23,7 +23,6 @@ app = dash.Dash(__name__)
 server = app.server
 
 # create stock ticker dropdowns
-# stocklist = []
 nasdaqlist = get_nasdaq_symbols()
 
 # default date options
@@ -47,14 +46,6 @@ app.layout = html.Div([
         html.P('')
 
     ],style={'width': '50%', 'display': 'inline-block'}),
-    # html.Div([
-    #     html.H2('Critical Variables and Ratios'),
-    #     html.Table(id='metrics-table'),
-    #     html.P(''),
-    #     html.H2('Warning Flags'),
-    #     html.Table(id='reason-list'),
-    #     html.P('')
-    # ], style={'width': '55%', 'float': 'right', 'display': 'inline-block'}),
     html.H4('Date Range for Stock Chart'),
     dcc.DatePickerRange(
         id='stock-date-range-picker',
