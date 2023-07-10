@@ -8,7 +8,7 @@ distro==1.8.0
 Flask==2.2.5
 Flask-Compress==1.13
 lxml==4.9.2
-numpy==1.24.2
+numpy==1.25.1
 numpy-financial==1.0.0
 pandas==1.5.3
 pandas-datareader==0.10.0
